@@ -1,0 +1,36 @@
+CLASE 01
+---------------------------------------------
+1.- Instalación de Git for Windows
+2.- Clonación de repositorios
+3.- Actualizar el repositorio 
+4.- Verificar si ORACLE esta instalado
+5.- Instalar ORACLE 
+6.- Crear otra BD
+7.- SQL Developer
+8.- Creación de Esquemas
+9.- Modulo 03
+
+
+
+CLASE 02
+---------------------------------------------
+1.- Modulo 04
+2.- Modulo 05
+3.- Modulo 06
+
+CLASE 03
+---------------------------------------------
+1.- Modulo 07
+2.- Modulo 08
+3.- Modulo 10
+4.- Modulo 12
+
+
+CLASE 04
+---------------------------------------------
+1.- Modulo 09
+2.- Modulo 11
+
+
+
+
