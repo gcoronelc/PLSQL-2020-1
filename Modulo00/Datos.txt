@@ -1,0 +1,17 @@
+Repositorio
+-----------------------------------------------
+
+https://github.com/gcoronelc/PLSQL-2019-12
+
+
+Clonación
+----------------------------------------------------------
+
+git clone https://github.com/gcoronelc/PLSQL-2019-12.git
+
+git clone https://github.com/gcoronelc/databases.git
+
+
+
+
+
