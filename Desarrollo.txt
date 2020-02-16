@@ -5,31 +5,33 @@ CLASE 01
 3.- Actualizar el repositorio 
 4.- Verificar si ORACLE esta instalado
 5.- Instalar ORACLE 
-6.- Crear otra BD
-7.- SQL Developer
+6.- SQL Developer
 8.- Creación de Esquemas
-9.- Modulo 03
+9.- Modulo 02
+10.- Modulo 03
+11.- Modulo 09
+12.- Modulo 04 - FALTA BUCLES
 
 
 
 CLASE 02
 ---------------------------------------------
-1.- Modulo 04
-2.- Modulo 05
-3.- Modulo 06
+1.- 
+2.- 
+3.- 
 
 CLASE 03
 ---------------------------------------------
-1.- Modulo 07
-2.- Modulo 08
-3.- Modulo 10
-4.- Modulo 12
+1.- 
+2.- 
+3.- 
+4.- 
 
 
 CLASE 04
 ---------------------------------------------
-1.- Modulo 09
-2.- Modulo 11
+1.- 
+2.- 
 
 
 

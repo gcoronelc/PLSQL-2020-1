@@ -1,0 +1,4 @@
+VAR suma NUMBER;
+EXECUTE :suma := SCOTT.FN_SUMA(56,43)
+PRINT suma;
+
