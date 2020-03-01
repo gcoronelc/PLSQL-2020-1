@@ -23,17 +23,22 @@ CLASE 02
 
 CLASE 03
 ---------------------------------------------
-1.- 
-2.- 
-3.- 
-4.- 
+1.- Cursores
+2.- SQL en PL/SQL
+3.- Paquetes
+4.- Sequencias
+5.- Tablas temporales
+
 
 
 CLASE 04
 ---------------------------------------------
-1.- Sequescias
-2.- Tablas temporales
-3.- 
+1.- 
+2.- 
+3.- REFERENCIAS DE TABLAS 
+4.- ENLACES DE BASE DE DATOS
+5.- SINÓNIMOS
+
 
 
 

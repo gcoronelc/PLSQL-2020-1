@@ -3,8 +3,24 @@ EXAMEN
 
 Presentar una caso
 
+  El caso corresponde a una farmacia.
+  Los productos de que maneja la farmacia se compran en una unidad,
+  y se pueden vender en diferentes unidades, por ejemplo, se compra 
+  en cajas y se puede vender por caja, blister o por unidad.
+  Las ventas puedens ser coorporativas o a publico consumidor.
+  Hay productos que se venden solo con receta.
+  ... . . . . . .. 
+  ......
+
 - Explicar el caso (6 tablas mínimo)
+
+  Se ha considerado manejar una tabla de unidades,
+  ... . .. . . .
+
+
 - Modelar el caso 
+
+
 - Generar el script de creación del esquema
 - Script de carga de datos
 - Programar un Paquete para el CRUD de una tabla
