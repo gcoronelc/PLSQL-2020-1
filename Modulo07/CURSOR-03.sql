@@ -1,20 +1,42 @@
 
+CREATE OR REPLACE FUNCTION SCOTT.BTV( DATO BOOLEAN)
+RETURN VARCHAR2
+IS
+  RPTA VARCHAR2(20);
+BEGIN
+  IF DATO THEN
+    RPTA := 'TRUE';
+  ELSE
+    RPTA := 'FALSE';
+  END IF;
+  RETURN RPTA;
+END;
+/
+
 -- BUCLE WHILE
 
 DECLARE 
   CURSOR C_DEMO IS 
     SELECT * FROM SCOTT.EMP;
   V_REG SCOTT.EMP%ROWTYPE;
+  V_FILA NUMBER;
 BEGIN
+
+  dbms_output.put_line( 'OPEN: ' || SCOTT.BTV(C_DEMO%ISOPEN) );  
   OPEN C_DEMO;
+  dbms_output.put_line( 'OPEN: ' || SCOTT.BTV(C_DEMO%ISOPEN) );  
   
-  FETCH C_DEMO INTO V_REG;
+  FETCH C_DEMO INTO V_REG; -- Lee la fila 1
   WHILE C_DEMO%FOUND LOOP
-    dbms_output.put_line( V_REG.EMPNO || ' - ' || V_REG.ENAME || ' - ' || V_REG.SAL);
-    FETCH C_DEMO INTO V_REG;
+    V_FILA := C_DEMO%ROWCOUNT;
+    dbms_output.put_line( V_FILA || '.- ' || V_REG.EMPNO 
+      || ' - ' || V_REG.ENAME || ' - ' || V_REG.SAL);
+    FETCH C_DEMO INTO V_REG; -- Lee la fila 2, 3, 4, etc.
   END LOOP;
   
   CLOSE C_DEMO;
 END;
 /
+
+
 
