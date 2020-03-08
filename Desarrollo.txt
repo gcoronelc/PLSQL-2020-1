@@ -33,11 +33,11 @@ CLASE 03
 
 CLASE 04
 ---------------------------------------------
-1.- 
-2.- 
-3.- REFERENCIAS DE TABLAS 
-4.- ENLACES DE BASE DE DATOS
-5.- SINÓNIMOS
+1.- Trabajando con cadenas
+2.- REFERENCIAS DE TABLAS
+3.- ENLACES DE BASE DE DATOS
+4.- SINÓNIMOS
+5.- Triggers
 
 
 
