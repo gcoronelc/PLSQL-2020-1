@@ -1,0 +1,46 @@
+SELECT * FROM PRODUCTO;
+SELECT * FROM PROVEEDOR;
+SELECT * FROM CATEGORIA;
+SELECT 
+p.pd_idproducto CODIGO,
+p.pd_nombre PRODUCTO,
+r.pv_nombre PROVEEDOR,
+c.ct_nombre CATEGORIA,
+p.pd_stock STOCK,
+p.pd_costo PRECIO
+FROM PRODUCTO P 
+INNER JOIN PROVEEDOR R ON p.pd_idproveedor=r.pv_idproveedor
+INNER JOIN CATEGORIA C ON p.pd_idcategoria=c.ct_idcategoria
+WHERE c.ct_idcategoria in (70,50,60);
+
+CREATE GLOBAL TEMPORARY TABLE TIENDA.TABLA ( 
+  CODIGO NUMBER(10),
+  PRODUCTO VARCHAR2(30),
+  PROVEEDOR VARCHAR2(25),
+  CATEGORIA VARCHAR2(25),
+  STOCK NUMBER(5),
+  PRECIO NUMBER(7,2)   
+) ON COMMIT PRESERVE ROWS;
+/
+
+create or replace PROCEDURE SP_TABLA
+AS
+BEGIN
+INSERT INTO TABLA  --(CODIGO,PRODUCTO,PROVEEDOR,CATEGORIA,STOCK,PRECIO)
+SELECT 
+p.pd_idproducto CODIGO,
+p.pd_nombre PRODUCTO,
+r.pv_nombre PROVEEDOR,
+c.ct_nombre CATEGORIA,
+p.pd_stock STOCK,
+p.pd_costo PRECIO
+FROM PRODUCTO P 
+INNER JOIN PROVEEDOR R ON p.pd_idproveedor=r.pv_idproveedor
+INNER JOIN CATEGORIA C ON p.pd_idcategoria=c.ct_idcategoria
+WHERE c.ct_idcategoria in (70,50,60);
+COMMIT;
+EXCEPTION WHEN OTHERS THEN 
+dbms_output.put_line(SQLERRM);
+END SP_TABLA;
+/
+SELECT * FROM TIENDA.TABLA;

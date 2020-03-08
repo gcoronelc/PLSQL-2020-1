@@ -1,0 +1,41 @@
+select * from venta;
+select * from cliente;
+select * from empleado;
+
+SELECT 
+v.vn_idventa CODIGO,
+e.ep_nombre EMPLEADO,
+c.ct_nombre CLIENTE,
+v.vn_total TOTAL
+FROM VENTA V 
+INNER JOIN EMPLEADO E ON v.vn_idempleado=e.ep_idempleado
+INNER JOIN CLIENTE C ON v.vn_idcliente=c.ct_idcliente
+WHERE v.vn_total>40;
+
+CREATE GLOBAL TEMPORARY TABLE TIENDA.TABLA2( 
+  CODIGO NUMBER(10),
+  EMPLEADO VARCHAR2(25),
+  CLIENTE VARCHAR2(50),
+  TOTAL NUMBER(7,2)
+) ON COMMIT PRESERVE ROWS;
+/
+
+create or replace PROCEDURE SP_TABLA2
+AS
+BEGIN
+INSERT INTO TABLA2  --(CODIGO,EMPLEADO,CLIENTE,TOTAL)
+SELECT 
+v.vn_idventa CODIGO,
+e.ep_nombre EMPLEADO,
+c.ct_nombre CLIENTE,
+v.vn_total TOTAL
+FROM VENTA V 
+INNER JOIN EMPLEADO E ON v.vn_idempleado=e.ep_idempleado
+INNER JOIN CLIENTE C ON v.vn_idcliente=c.ct_idcliente
+WHERE v.vn_total>40;
+COMMIT;
+EXCEPTION WHEN OTHERS THEN 
+ dbms_output.put_line(SQLERRM);
+END;
+/
+SELECT * FROM TABLA2;

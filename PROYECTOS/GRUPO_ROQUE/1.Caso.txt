@@ -1,0 +1,169 @@
+
+======================
+J Roque C.
+======================
+
+======================
+© El caso es sobre un estudio fotografico
+======================
+
+El estudio realiza sesiones de fotografias al 
+publico en general con distintas temáticas.
+Las fotos se entregan luego de haberse seleccionadas
+y editadas. 
+La cantidad, tamaño y formato de las fotos esta 
+definida por el paquete adquirido por el cliente.
+Los paquetes de fotos cuentan con descuento según 
+sea la temática.
+
+
+======================
+======================
+Entidades
+======================
+sesion
+cliente
+usuario
+empleado
+cargo
+sede
+tematica
+foto
+paquete
+paquete_foto
+======================
+======================
+
+
+======================
+Atributos de las entidades
+======================
+
+sesion
+===========
+id_sesion
+id_cliente
+id_usuario
+id_paquete
+id_tematica
+estado
+forma_pago (EFECTIVO.TARJETA,DEPOSITO,REGALO)
+estado_pago (PENDIENTE,PARCIAL,CANCELADO,DEUDA)
+monto_pagado 
+comentarios
+fecha_hora_sesion
+fecha_registro
+
+
+
+tematica
+===========
+id_tematica
+nombre
+descripcion
+recomendacion
+descuento_porc
+min_personas
+max_personas
+duracion_minutos
+
+
+paquete
+===========
+id_paquete
+nro_fotos
+precio
+
+
+
+paquete_foto
+===========
+id_paquete
+id_foto
+tipo_foto (digital,impresa)
+cantidad
+
+
+foto
+===========
+id_foto
+nombre
+unidad_medida (px, cm)
+alto
+ancho
+
+
+cliente
+===========
+id_cliente
+nombres
+apellidos
+tipo_documento
+nro_documento
+telefono
+celular
+direccion
+correo
+estado
+preferencias
+comentarios
+fecha_registro
+fecha_actualizacion
+
+
+usuario
+===========
+id_usuario
+id_empleado
+usuario
+contrasena
+estado
+fecha_registro
+
+
+empleado
+===========
+id_empleado
+nombres
+apellidos
+telefono
+direccion
+id_cargo
+id_sede
+id_jefe
+estado
+fecha_ingreso
+fecha_cese
+fecha_registro
+
+
+sede
+===========
+id_sede
+nombre
+direccion
+
+
+cargo
+===========
+id_cargo
+nombre
+
+
+
+======================
+======================
+orden carga data
+======================
+UBIGEO
+SEDE
+CARGO
+FOTO
+PAQUETE
+PAQUETE_FOTO
+TEMATICA
+EMPLEADO
+USUARIO
+CLIENTE
+SESION
+

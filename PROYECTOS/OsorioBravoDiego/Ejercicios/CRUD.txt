@@ -1,0 +1,200 @@
+/*
+=================================================
+------------------ACTUALIZAR---------------------
+=================================================
+*/
+create or replace PROCEDURE ACTUALIZAR_CLIENTE(
+     P_CT_IDCLIENTE IN cliente.ct_idcliente%TYPE,
+     P_CT_DNI  IN cliente.ct_dni%TYPE,
+     P_CT_NOMBRE IN cliente.ct_nombre%TYPE,
+     P_CT_TELEFONO IN cliente.ct_telefono%TYPE,
+     P_CT_DIRECCION IN cliente.ct_direccion%TYPE,
+     P_PLSQLCODE OUT NOCOPY  NUMBER,
+     P_ERROR OUT NOCOPY  VARCHAR2
+ ) AS
+     V_IDCLIENTE NUMBER;
+ BEGIN
+    --------BUSCA IDCLIENTE---------------------------------------
+    select count(CT_IDCLIENTE)
+    into V_IDCLIENTE
+    from CLIENTE 
+    where CT_IDCLIENTE = P_CT_IDCLIENTE;    
+    ----------SI NO ENCUENTRA CLIENTE MANDA ERROR-----------------
+    IF (V_IDCLIENTE = 0) THEN
+      RAISE_APPLICATION_ERROR(-20001, 'CODIGO CLIENTE NO EXISTE');
+    END IF;
+    ---------------ACTUALIZA--------------------------------------
+    UPDATE CLIENTE
+    SET  
+     CT_DNI = P_CT_DNI,
+     CT_NOMBRE = P_CT_NOMBRE,
+     CT_TELEFONO = P_CT_TELEFONO,
+     CT_DIRECCION = P_CT_DIRECCION     
+     WHERE CT_IDCLIENTE  = P_CT_IDCLIENTE; 
+
+   P_PLSQLCODE:= 0;
+   P_ERROR := 'CLIENTE ACTUALIZADO';
+   COMMIT; 
+
+   EXCEPTION
+    WHEN OTHERS THEN
+      P_PLSQLCODE := -1;
+      P_ERROR := TO_CHAR(sqlcode) || ' - ' || SQLERRM;           
+ END ACTUALIZAR_CLIENTE;
+/
+
+/*
+=================================================
+------------------BUSCAR-------------------------
+=================================================
+*/
+create or replace PROCEDURE BUSCAR_CLIENTE(
+    P_CT_IDCLIENTE  IN cliente.ct_idcliente%TYPE,    
+    P_CURSOR OUT NOCOPY SYS_REFCURSOR,
+    P_PLSQLCODE OUT NOCOPY  NUMBER,
+    P_ERROR OUT NOCOPY  VARCHAR2
+
+  ) AS
+    V_IDCLIENTE NUMBER;
+  --------------------ENCONTRAR CODIGO CLIENTE---------------  
+  BEGIN
+    select count(CT_IDCLIENTE)
+    into V_IDCLIENTE
+    from CLIENTE 
+    where CT_IDCLIENTE = P_CT_IDCLIENTE;
+   ------------------ERROR NO ENCONTRAR---------------------- 
+    IF (V_IDCLIENTE = 0) THEN
+      RAISE_APPLICATION_ERROR(-20001, 'CLIENTE NO ENCONTRADO');
+    END IF;
+
+    OPEN P_CURSOR FOR
+    SELECT 
+      CT_IDCLIENTE,
+      CT_DNI,      
+      CT_NOMBRE,
+      CT_TELEFONO,
+      CT_DIRECCION 
+    FROM CLIENTE 
+    where CT_IDCLIENTE = P_CT_IDCLIENTE;
+    P_PLSQLCODE := 0;
+
+  EXCEPTION
+    WHEN OTHERS THEN
+      P_PLSQLCODE := -1;
+      P_ERROR := TO_CHAR(sqlcode) || ' - ' || SQLERRM;        
+  END BUSCAR_CLIENTE;
+/
+
+/*
+=================================================
+------------------ELIMINAR-----------------------
+=================================================
+*/
+create or replace PROCEDURE ELIMINA_CLIENTE(
+    P_CT_IDCLIENTE IN cliente.ct_idcliente%TYPE, 
+    P_PLSQLCODE OUT NOCOPY  NUMBER,
+    P_ERROR OUT NOCOPY  VARCHAR2
+) AS
+    V_IDCLIENTE NUMBER;
+  BEGIN
+    -------------VALIDANDO IDCLIENTE--------------
+    select count(CT_IDCLIENTE)
+    into V_IDCLIENTE
+    from CLIENTE 
+    where CT_IDCLIENTE = P_CT_IDCLIENTE;
+    ------------MANEJANDO ERROR-------------------
+    IF (V_IDCLIENTE = 0) THEN
+      RAISE_APPLICATION_ERROR(-20001, 'NO EXISTE CLIENTE');
+    END IF;
+    ------------ELIMINANDO CLIENTE----------------
+    DELETE
+    FROM CLIENTE
+    WHERE CT_IDCLIENTE = P_CT_IDCLIENTE;
+
+    P_PLSQLCODE := 0;
+    P_ERROR := 'CLIENTE ELIMINADO CORRECTAMENTE';
+    COMMIT;
+
+  EXCEPTION
+    WHEN OTHERS THEN
+      P_PLSQLCODE:= -1;
+      P_ERROR := TO_CHAR(sqlcode) || ' - ' || SQLERRM;
+  END ELIMINA_CLIENTE;
+/
+/*
+=================================================
+------------------INSERTAR-----------------------
+=================================================
+*/
+create or replace PROCEDURE INSERTAR_CLIENTE(
+    P_CT_DNI  IN cliente.ct_dni%TYPE,
+    P_CT_NOMBRE IN cliente.ct_nombre%TYPE,
+    P_CT_TELEFONO IN cliente.ct_telefono%TYPE,
+    P_CT_DIRECCION IN cliente.ct_direccion%TYPE,
+    P_PLSQLCODE OUT NOCOPY  NUMBER,
+    P_ERROR OUT NOCOPY  VARCHAR2
+) IS
+    V_IDCLIENTE NUMBER;
+    V_EXDNI NUMBER;
+  BEGIN  
+    -------- VALIDAR SI UN CLIENTE YA ESTA REGISTRADO POR SU DNI YA QUE ES ES UN OBJETO UNICO POR PERSONA
+    select count(CT_DNI)
+    into V_EXDNI
+    from CLIENTE 
+    where P_CT_DNI=CT_DNI;    
+
+    IF (V_EXDNI = 1) THEN
+      RAISE_APPLICATION_ERROR(-20001, 'CLIENTE YA REGISTRADO'); -----MANEJANDO MI PROPIO ERROR
+    END IF;
+
+    ----------GENERANDO UN CODIGO PARA EL CLIENTE     
+    select max(CT_IDCLIENTE)+1 
+    into V_IDCLIENTE
+    from CLIENTE ;    
+
+    INSERT INTO CLIENTE  
+      VALUES
+      (
+        V_IDCLIENTE,
+        P_CT_DNI,
+        P_CT_NOMBRE,
+        P_CT_TELEFONO,
+        P_CT_DIRECCION
+      );
+   P_PLSQLCODE := 0;
+   P_ERROR := 'CLIENTE REGISTRADO';
+   COMMIT;   
+   EXCEPTION
+    WHEN OTHERS THEN
+      P_PLSQLCODE := -1;
+      P_ERROR := TO_CHAR(sqlcode) || ' - ' || SQLERRM;
+END INSERTAR_CLIENTE;
+/
+
+/*
+=================================================
+------------------LISTAR-------------------------
+=================================================
+*/
+create or replace PROCEDURE LISTA_CLIENTE(  
+    P_CURSOR OUT NOCOPY SYS_REFCURSOR,
+    P_PLSQLCODE OUT NOCOPY  NUMBER,
+    P_ERROR OUT NOCOPY  VARCHAR2
+) AS
+    V_IDCLIENTE NUMBER;
+  BEGIN
+    OPEN P_CURSOR FOR
+    SELECT 
+      CT_IDCLIENTE,
+      CT_DNI,      
+      CT_NOMBRE,
+      CT_TELEFONO,
+      CT_DIRECCION      
+    FROM CLIENTE;
+    P_PLSQLCODE:= 0;
+
+   EXCEPTION
+   WHEN OTHERS THEN
+      P_PLSQLCODE := -1;
+      P_ERROR := TO_CHAR(sqlcode) || ' - ' || SQLERRM;
+END LISTA_CLIENTE;

@@ -1,0 +1,48 @@
+ID_CLIENTE;NOMBRES;APELLIDOS;TIPO_DOCUMENTO;NRO_DOCUMENTO;TELEFONO;CELULAR;DIRECCION;CORREO;ESTADO;PREFERENCIAS;COMENTARIOS;FECHA_REGISTRO;FECHA_ACTUALIZACION;ID_UBIGEO
+1;Jakeem;Macdonald;dni;17007073;735-2232;901-681-609;7739 Felis Ave;jmacdonald@yopmail.com;Y;;;28/07/20;28/07/20;090404
+2;Kirestin;Blanchard;carnet;95599944;602-4114;237-102-272;4432 Mauris. Ave;kblanchard@yopmail.com;Y;;;08/10/19;08/10/19;150125
+3;Ciara;Turner;pasaporte;83929382;869-7203;575-704-976;Ap #286-9912 Purus St.;cturner@yopmail.com;Y;;;16/01/20;16/01/20;150905
+4;Levi;Morales;carnet;75285931;130-3825;458-378-326;727-5966 Nunc Ave;lmorales@yopmail.com;Y;;;27/03/19;27/03/19;150805
+5;Kessie;Lane;dni;44357567;590-2171;366-675-318;572-5381 Scelerisque, Ave;klane@yopmail.com;Y;;;21/07/19;21/07/19;060506
+6;Ann;Rogers;pasaporte;37766626;584-7949;936-556-811;5809 Donec Rd.;arogers@yopmail.com;Y;;;20/08/19;20/08/19;050702
+7;Darius;Solis;carnet;48087550;552-4503;427-151-587;Ap #459-123 Elit. Rd.;dsolis@yopmail.com;Y;;;29/10/20;29/10/20;151029
+8;Linda;Rice;carnet;57615849;348-3842;165-265-191;1926 Egestas Road;lrice@yopmail.com;Y;;;30/03/19;30/03/19;150117
+9;Camille;Garza;dni;64203426;856-3249;722-295-176;Ap #814-3987 Nisl Road;cgarza@yopmail.com;Y;;;21/02/20;21/02/20;150101
+10;Evelyn;Mccoy;dni;18606864;810-7561;319-346-385;Ap #285-8512 Libero Avenue;emccoy@yopmail.com;Y;;;20/12/20;20/12/20;150112
+11;Kerry;Baldwin;dni;19020563;663-3539;739-322-150;Ap #998-2638 Feugiat Avenue;kbaldwin@yopmail.com;Y;;;14/04/19;14/04/19;101005
+12;Xanthus;Edwards;dni;81217314;141-1557;182-831-649;504-7749 Morbi St.;xedwards@yopmail.com;Y;;;15/10/19;15/10/19;150110
+13;Kaseem;Boone;carnet;66681308;663-4523;299-820-520;430-9012 Amet, Rd.;kboone@yopmail.com;Y;;;05/09/20;05/09/20;150727
+14;Ray;Cooke;carnet;36555356;622-3267;627-600-981;828-8283 Mattis. Rd.;rcooke@yopmail.com;Y;;;22/12/20;22/12/20;120209
+15;Jaquelyn;Fitzpatrick;carnet;75221256;535-4118;400-129-198;4249 Eleifend Street;jfitzpatrick@yopmail.com;Y;;;15/10/19;15/10/19;120428
+16;Sandra;Thornton;carnet;21208370;219-9808;704-735-223;Ap #798-4889 Mollis. Ave;sthornton@yopmail.com;Y;;;24/10/20;24/10/20;140115
+17;Shelby;Miller;dni;55894434;462-3613;569-602-411;P.O. Box 510, 8593 Tincidunt, St.;smiller@yopmail.com;Y;;;21/01/20;21/01/20;150138
+18;Drake;Stanton;carnet;49756124;101-3664;358-869-720;5417 Tristique St.;dstanton@yopmail.com;Y;;;04/08/19;04/08/19;150404
+19;Abigail;Michael;carnet;76305654;984-4544;313-130-382;380 Molestie Avenue;amichael@yopmail.com;Y;;;07/11/19;07/11/19;150105
+20;Pascale;Kinney;dni;85704376;144-3267;710-590-217;Ap #701-4475 Magna. St.;pkinney@yopmail.com;Y;;;19/04/19;19/04/19;150122
+21;Arden;Montgomery;dni;81209121;573-8882;956-584-794;4111 Ac Street;amontgomery@yopmail.com;Y;;;08/08/20;08/08/20;110503
+22;Edan;Mclaughlin;carnet;86839118;797-5816;279-552-450;P.O. Box 291, 6790 Dictum Street;emclaughlin@yopmail.com;Y;;;10/06/20;10/06/20;050410
+23;Alexa;Townsend;carnet;76671648;848-7506;898-348-384;Ap #875-9966 Eu St.;atownsend@yopmail.com;Y;;;19/02/20;19/02/20;120428
+24;Carson;Adkins;dni;81304076;845-9922;956-856-324;9093 Sodales Rd.;cadkins@yopmail.com;Y;;;04/12/20;04/12/20;140115
+25;Athena;Holloway;carnet;79674709;581-3723;108-810-756;Ap #600-3349 Sed Avenue;aholloway@yopmail.com;Y;;;05/09/19;05/09/19;150138
+26;Rudyard;Ayala;carnet;71054188;754-9386;331-663-353;1444 Ligula. Road;rayala@yopmail.com;Y;;;29/03/19;29/03/19;150101
+27;Ivory;Livingston;pasaporte;95556739;896-4235;377-141-155;775-490 Nunc Ave;ilivingston@yopmail.com;Y;;;06/12/19;06/12/19;150112
+28;Nita;Chan;dni;21399415;957-1133;926-663-452;3464 Risus St.;nchan@yopmail.com;Y;;;09/11/19;09/11/19;101005
+29;Ulysses;Bray;pasaporte;52302796;606-3421;979-622-326;P.O. Box 956, 1079 Ac Street;ubray@yopmail.com;Y;;;08/10/19;08/10/19;150110
+30;Drew;Nguyen;carnet;11177332;461-9408;411-535-411;Ap #831-4881 Aenean Street;dnguyen@yopmail.com;Y;;;05/06/20;05/06/20;150727
+31;Keaton;Travis;dni;30376042;465-4104;712-219-980;Ap #990-9000 Donec Avenue;ktravis@yopmail.com;Y;;;07/12/20;07/12/20;120209
+32;Tanya;Sharp;carnet;34291042;500-7104;931-462-361;361-3276 A Rd.;tsharp@yopmail.com;Y;;;14/06/19;14/06/19;120209
+33;Hermione;Webb;dni;67801981;594-4986;708-101-366;Ap #802-4732 Ac St.;hwebb@yopmail.com;Y;;;16/11/19;16/11/19;130105
+34;Hall;Klein;dni;60761455;992-3332;592-984-454;Ap #841-838 Risus. Road;hklein@yopmail.com;Y;;;29/08/20;29/08/20;090411
+35;Cedric;Delgado;carnet;10775162;146-5387;419-573-888;Ap #631-4246 Et, Rd.;cdelgado@yopmail.com;Y;;;30/03/20;30/03/20;150404
+36;Octavia;Buchanan;dni;33665986;161-7088;570-797-581;P.O. Box 992, 362 Magna. Rd.;obuchanan@yopmail.com;Y;;;05/12/19;05/12/19;150105
+37;Ciara;Nieves;pasaporte;13923914;686-3998;301-848-750;Ap #913-4194 Erat Ave;cnieves@yopmail.com;Y;;;24/01/20;24/01/20;150122
+38;Thomas;Butler;dni;48271985;344-4575;164-845-992;Ap #552-7779 Lectus Road;tbutler@yopmail.com;Y;;;30/04/20;30/04/20;150805
+39;Ava;Stuart;carnet;41699984;998-1696;580-581-372;546-5753 Quis Avenue;astuart@yopmail.com;Y;;;23/01/20;23/01/20;060506
+40;Portia;Sandoval;pasaporte;52291419;623-3821;889-754-938;827-1900 Aliquet, Road;psandoval@yopmail.com;Y;;;10/08/20;10/08/20;050702
+41;Myles;Walter;dni;93887606;649-1009;468-896-423;Ap #573-8829 Libero Rd.;mwalter@yopmail.com;Y;;;28/11/20;28/11/20;151029
+42;Holmes;Massey;pasaporte;14197862;696-5273;892-461-940;P.O. Box 702, 8281 Congue Avenue;hmassey@yopmail.com;Y;;;17/01/20;17/01/20;150117
+43;Marvin;Pope;pasaporte;62555588;861-5137;851-465-410;238-8597 Litora Av.;mpope@yopmail.com;Y;;;05/12/19;05/12/19;150101
+44;Mason;Christian;dni;33661916;596-0773;111-500-710;Ap #237-4313 Dictum. Avenue;mchristian@yopmail.com;Y;;;14/06/19;14/06/19;150112
+45;Hermione;Hyde;dni;53743928;920-1418;148-594-498;P.O. Box 842, 4652 Nec Av.;hhyde@yopmail.com;Y;;;14/06/19;14/06/19;101005
+46;Kylynn;Kline;pasaporte;41166368;297-5142;235-992-333;2513 Non, St.;kkline@yopmail.com;Y;;;31/08/19;31/08/19;150110
+47;Abdul;Simon;dni;87112659;653-3827;247-146-538;5536 Vulputate Rd.;asimon@yopmail.com;Y;;;17/08/20;17/08/20;150727

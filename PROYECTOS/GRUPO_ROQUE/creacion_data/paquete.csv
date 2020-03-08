@@ -1,0 +1,9 @@
+ID_PAQUETE;NOMBRE;DESCRIPCION;NRO_FOTOS;PRECIO
+1;Paquete Lino;Fotos impresas;4;25.00
+2;Paquete Hierro;Fotos impresas;6;32.00
+3;Paquete Cristal;Fotos impresas;10;44.00
+4;Paquete Cuarzo;Fotos impresas;14;56.00
+5;Paquete Jade;Fotos impresas + digitales;20;64.00
+6;Paquete Oro;Fotos impresas + digitales;30;80.00
+7;Paquete Titanio;Fotos impresas + digitales;40;96.00
+8;Paquete Diamante;Fotos impresas + digitales;50;120.00

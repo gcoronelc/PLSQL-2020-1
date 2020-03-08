@@ -1,0 +1,166 @@
+create or replace PACKAGE pkg_genera_docu 
+as
+  TYPE t_detalle_venta IS TABLE OF DETALLE_VENTA%ROWTYPE;
+  tt_detalle_venta t_detalle_venta;
+  
+procedure spp_gen_documento
+(
+  p_data      in VARCHAR2,
+  p_sqlcode   out number,
+  p_sqlerrm   out varchar2
+);
+PROCEDURE SPP_INSERTA_DETALLE(p_record   IN VARCHAR2,
+                              p_deli_campo IN VARCHAR2,
+                              p_i          IN INTEGER)
+;
+END pkg_genera_docu;
+/
+
+create or replace PACKAGE BODY pkg_genera_docu 
+as
+  v_deli_campo         VARCHAR2(10):= ',';
+procedure spp_gen_documento
+(
+  p_data      in VARCHAR2,
+  p_sqlcode   out number,
+  p_sqlerrm   out varchar2
+)
+IS
+  e_sin_detalle        EXCEPTION;
+  e_sin_datos_validos  EXCEPTION;
+  v_deli_record        VARCHAR2(10):='|';
+  v_data               CLOB;
+  i_pos                INTEGER;
+  i_pos_ant            INTEGER;
+  v_nro_char           INTEGER;
+  v_record             CLOB;
+  v_fin                INTEGER;
+  v_ini                INTEGER;
+  v_salir              INTEGER;
+  v_control            INTEGER := 0;
+  v_total              NUMBER(7,2):=0;
+  v_flag               INTEGER;
+  v_idventa            VENTA.VN_IDVENTA%TYPE;
+
+  BEGIN
+  p_sqlcode := 0;
+  p_sqlerrm := 'OK.. Se genero documento de venta';
+  IF p_data IS NULL THEN
+     RAISE e_sin_detalle;
+  END IF;
+  -- 1.- Verifica tamano de trama y si existe datos con delimitador ---
+  tt_detalle_venta := t_detalle_venta();   --- inicializa arreglo
+  v_data := p_data;
+  --2.- v_data lo convierte en registros
+  v_ini := 1;
+  LOOP
+    v_fin := INSTR(v_data,v_deli_record);
+    IF v_fin > 0 THEN
+       v_record     := SUBSTR(v_data,v_ini,v_fin - 1);
+       v_data       := SUBSTR(v_data,v_fin+LENGTH(v_deli_record));
+       DBMS_OUTPUT.PUT_LINE(v_record);
+       v_salir      := 0;
+    ELSE
+       v_record := v_data;
+       DBMS_OUTPUT.PUT_LINE(v_record);
+       v_salir := 1;
+    END IF;
+    v_control := v_control + 1;
+    SPP_INSERTA_DETALLE(v_record,v_deli_campo,v_control);
+    IF v_salir = 1 THEN
+       EXIT;
+    END IF;
+  END LOOP;
+  ---  inserta detalle y actualiza factura --
+  v_flag := 0;
+           DBMS_OUTPUT.PUT_LINE('Ingresa insertar detalle');
+  FOR i IN 1..v_control-1 LOOP
+      -- obtiene el numero de la venta --
+      IF v_flag = 0 THEN
+         v_idventa := tt_detalle_venta(i).dv_idventa;
+         v_flag := 1;
+      END IF;
+     INSERT INTO detalle_venta VALUES tt_detalle_venta(i);
+      -- obtiene los totales --
+      v_total := v_total + (tt_detalle_venta(i).dv_cantidad * tt_detalle_venta(i).dv_precio);
+      -- actualiza stock --
+      UPDATE PRODUCTO
+      SET PD_STOCK = PD_STOCK - tt_detalle_venta(i).dv_cantidad
+      WHERE PD_IDPRODUCTO = tt_detalle_venta(i).dv_idproducto;
+
+  END LOOP;
+         DBMS_OUTPUT.PUT_LINE('v_idventa ' ||v_idventa);
+         DBMS_OUTPUT.PUT_LINE('v_total ' ||v_total);
+  -- Actualiza Total en tabla venta --
+  UPDATE VENTA
+  SET VN_TOTAL = v_total
+  WHERE VN_IDVENTA = v_idventa;
+  COMMIT;
+
+exception
+when e_sin_detalle THEN
+  p_sqlcode := -1;
+  p_sqlerrm := 'ERR... Registro sin datos ';
+
+when others then
+  p_sqlcode := sqlcode;
+  p_sqlerrm := sqlerrm;
+ DBMS_OUTPUT.PUT_LINE(sqlerrm);
+end spp_gen_documento;
+
+PROCEDURE SPP_INSERTA_DETALLE(p_record   IN VARCHAR2,
+                              p_deli_campo IN VARCHAR2,
+                              p_i          IN INTEGER)
+AS
+
+
+  v_ini    INTEGER;
+  v_fin    INTEGER;
+  v_salir  INTEGER;
+  v_control INTEGER;
+  v_count_campo INTEGER := 0;
+  v_record CLOB;
+  v_campo  VARCHAR2(100);
+  i        INTEGER;
+
+BEGIN
+  v_ini := 1;
+  v_record := p_record;
+  v_control := 1;
+  i := p_i;
+  tt_detalle_venta.extend();   --- adiciona 
+  LOOP
+    v_fin := INSTR(v_record,p_deli_campo);
+    IF v_fin > 0 THEN
+       v_campo     := SUBSTR(v_record,v_ini,v_fin - 1);
+       v_record    := SUBSTR(v_record,v_fin+LENGTH(p_deli_campo));
+       DBMS_OUTPUT.PUT_LINE(v_campo);
+       v_salir      := 0;
+    ELSE
+       v_campo := v_record;
+       DBMS_OUTPUT.PUT_LINE(v_campo);
+       v_salir := 1;
+    END IF;
+    -- datos en record type --
+    v_count_campo := v_count_campo + 1;
+    dbms_output.put_line('paso 1');
+    CASE v_count_campo 
+      WHEN 1 THEN tt_detalle_venta(i).dv_idventa := v_campo;
+      WHEN 2 THEN tt_detalle_venta(i).dv_idproducto := v_campo;
+      WHEN 3 THEN tt_detalle_venta(i).dv_cantidad := v_campo;
+      WHEN 4 THEN tt_detalle_venta(i).dv_precio := to_number(v_campo,'99999.99');
+    END CASE;  
+    dbms_output.put_line('PRECIO '||tt_detalle_venta(i).dv_precio);
+    dbms_output.put_line('paso 2');
+    IF v_salir = 1 THEN
+       EXIT;
+    END IF;
+  END LOOP;
+      dbms_output.put_line('paso 3');
+EXCEPTION 
+WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE(sqlerrm);
+
+END SPP_INSERTA_DETALLE;
+
+END pkg_genera_docu;
