@@ -88,4 +88,16 @@ connect by regexp_substr('SMITH,ALLEN,WARD,JONES', '[^,]+', 1, level) is not nul
 
 
 
+declare
+	V_DATOS varchar2(10000) := '1|2da actualización|2321669|21/08/2013|156-2013-OEFA/DE|372-2013-OEFA/DE-SDCA|F00001|No Aplica|Restos o depósitos de residuos.|||Sin Lote|Loreto|Dátem del Marañón|Morona|Bajo|Medio|Bajo||251587|9564586|18||Región Hidrográfica del Amazonas|Cuenca Morona||||||||||||||||||Medio||||||||~2|2da actualización|2347225|2/12/2013|221-2013-OEFA/DE|498-2013-OEFA/DE-SDCA|F00666|T2378|Pozo mal abandonado|||VII/VI (ex Lote VII)|Piura|Talara|La Brea|Bajo|Bajo|Bajo||477044|9487433|17||Región Hidrografica del Pacífico|Intercuenca 1391||||||||||||||||||Bajo||||||||PA por termino de contrato N° 2863087~3|Posterior - 2019|2982142|1/10/2019|Oficio N° 250-2019|Informe N° 407-2019-OEFA/DEAM-SSIM|F05855|A_897|Suelocontaminado conhidrocarburos enel áreacircundante alpozo A_897 einstalación malabandonadavinculada a dichopozo|APA Tipo 01||X|Piura|Talara|El Alto|Medio|Medio|Medio||479234|9526689|17||Región Hidrografica del Pacífico|Cuenca Pariñas||||||||||||||||||Medio||||||||PA por termino de contrato N° 2930302';
+	V_ARREGLO SCOTT.PKG_EGCC_UTIL.T_ARRAY_STRING;
+begin
+	V_ARREGLO := SCOTT.PKG_EGCC_UTIL.SPLIT(V_DATOS,'~');
+	
+	DBMS_OUTPUT.PUT_LINE('COUNT: ' || V_ARREGLO.COUNT);
+	FOR I in 1 .. V_ARREGLO.COUNT LOOP 
+		dbms_output.put_line(V_ARREGLO(I)); 
+	END LOOP;
+end;
+/
 
